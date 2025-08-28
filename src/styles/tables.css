@@ -1,0 +1,119 @@
+@import url(variables.css);
+.image{
+  display: block;
+  position: absolute;
+  width: 4rem;
+  bottom: calc(100% - 5rem);
+  right: calc(100% - 5rem);
+}
+.contenedor_tabla{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 50px 0;
+  overflow-y: auto;
+  gap: 5%;
+}
+.contenedor_tabla--spaceOut{
+  padding: 0;
+}
+
+.table, .table__header{
+  width: 100%;
+  max-width: 60%;
+}
+
+.table__header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.table__title{
+  font-size: 2.5rem;
+  color: var(--colorTerciario);
+}
+
+.table{
+  height: min-content;
+  border-collapse: collapse;
+  border: none;
+  border-radius: var(--borderRadiusInputs);
+  overflow: hidden;
+  box-shadow: 0px 2px 10px var(--input);
+}
+
+
+.table__head{
+  background-color: var(--colorTerciario);
+}
+
+.table__body{
+  background-color: var(--colorAdicional);
+  text-align: center;
+}
+
+.table__cell{
+  padding: 10px 15px;
+}
+.table__cell--separate{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.table__cell--text{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.table__row{
+  border-top: 2px solid var(--colorPrincipal);
+  transition: var(--timeTransition);
+  height: min-content;
+}
+.table__row:hover{
+  background-color: var(--colorSecundario);
+}
+
+.table__button{
+  height: 35px;
+  width: 35px;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: var(--colorTerciario);
+  color: var(--colorPrincipal);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: var(--timeTransition);
+}
+.table__button--delete{
+  background-color: var(--colorPrincipal);
+  color: var(--colorBlanco);
+}
+
+.table__button--create{
+  width: auto;
+  height: auto;
+  padding: 0 20px;
+  border-radius: var(--borderRadiusInputs);
+  font-weight: 500;
+  background-color: var(--colorBlanco);
+  color: var(--colorTerciario);
+}
+
+.table__button:hover{
+  filter: drop-shadow(0px 0px 3px var(--colorSombras));
+}
+
+@media (max-width: 930px) {
+  .table{
+    max-width: 70%;
+  }
+}
