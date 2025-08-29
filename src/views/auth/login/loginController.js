@@ -67,15 +67,10 @@ export const loginController = async (parametros = null) => {
       // En una variable almaceno la respuesta de hacer fetch a la ruta que me consulta.
       const respuesta = await crearDato("auth/login", usuario);
 
-      console.log(respuesta);
-
-
-      // console.log(respuesta.erros[0].message);
-
       // Si la petición NO se realizó con exito...
       if (!respuesta.success) {
         let error = null; //Declaro variable error e inicializo en null para luego almacenar el error.
-        if (Array.isArray(respuesta.erros)) error = respuesta.erros[0].message; //Si lo errores obtenidos de la peticion es un arreglo entonces almaceno en la variable error el primer error del arreglo.
+        if (Array.isArray(respuesta.erros) && respuesta.erros.length != 0) error = respuesta.erros[0].message; //Si lo errores obtenidos de la peticion es un arreglo entonces almaceno en la variable error el primer error del arreglo.
         else error = respuesta.erros //Si no es un arreglo solo alamceno el error obtenido en la varaible.
 
         // Por ultimo muestro el error en una alerta y retorno para no seguir.
@@ -85,6 +80,8 @@ export const loginController = async (parametros = null) => {
 
       // Destructuro el objeto de los datos obtenido en la respuesta.
       let { data } = respuesta;
+
+      console.log(data);
 
 
       // Guardo los datos en el localStorage
@@ -96,7 +93,7 @@ export const loginController = async (parametros = null) => {
       if (alerta.isConfirmed) {
         // Reseteo los campos del formulario y se dirige a la vista de login
         formLogin.reset();
-        if (data.codigo_rol == 1) {
+        if (data.id == 1) {
           window.location.href = '#/usuarios';
           return
         }

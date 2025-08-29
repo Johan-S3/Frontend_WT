@@ -1,4 +1,5 @@
 import { loginController } from "../views/auth/login/loginController";
+import { usuariosController } from "../views/usuarios/listar/usuariosController";
 
 export const routes = {
   // Ruta simple
@@ -7,6 +8,24 @@ export const routes = {
     // controlador: loginController,
     controlador: loginController,
     private: false
+  },
+  usuarios: {
+    "/": {
+      path: `usuarios/listar/index.html`,
+      controlador: usuariosController,
+      private: true,
+      permit: "usuarios.index"
+    },
+    // crear: {
+    //   path: `usuarios/crear/index.html`,
+    //   controlador: crearUsuariosController,
+    //   private: true
+    // },
+    // editar: {
+    //   path: `usuarios/actualizar/index.html`,
+    //   controlador: actualizarUsuariosController,
+    //   private: true
+    // }
   },
   // inicio: {
   //   path: "inicio/index.html",
@@ -19,23 +38,7 @@ export const routes = {
   //   private: true
   // },
   // // Grupo de rutas
-  // usuarios: {
-  //   "/": {
-  //     path: `usuarios/listar/index.html`,
-  //     controlador: usuariosController,
-  //     private: true
-  //   },
-  //   crear: {
-  //     path: `usuarios/crear/index.html`,
-  //     controlador: crearUsuariosController,
-  //     private: true
-  //   },
-  //   editar: {
-  //     path: `usuarios/actualizar/index.html`,
-  //     controlador: actualizarUsuariosController,
-  //     private: true
-  //   }
-  // },
+
   // lavadores: {
   //   "/": {
   //     path: `lavadores/listar/index.html`,

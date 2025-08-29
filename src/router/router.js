@@ -1,4 +1,7 @@
 
+import { errorAlert } from "../helpers/alertas";
+import getCookie from "../helpers/getCookie";
+import { isAuth } from "../utils/auth";
 import { routes } from "./routes";
 
 // Función principal del enrutador SPA
@@ -27,15 +30,27 @@ export const router = async (elemento) => {
 
   // Verificar acceso privado
   if (ruta.private) {
-    redirigirARuta("Login");
-    return;
+    const isAuthentic = await isAuth();
+
+    if (!isAuthentic) {
+      redirigirARuta("login");
+      return;
+    }
   }
 
-  console.log(ruta);
+  if (ruta.permit) {
+    const permisos = getCookie("permisos", []);
 
+    const hasPermition = permisos.some(permiso => permiso == ruta.permit);
+
+    if (!hasPermition) {
+      errorAlert("Acceso denegado", "No tienes permisos para acceder");
+      return;
+    }
+  }
 
   // Cargar la vista HTML y ejecutar el controlador JS
-  await cargarVista(ruta.path, elemento);
+  await cargarVista(ruta, elemento);
   await ruta.controlador(parametros);
 };
 
@@ -102,13 +117,30 @@ const extraerParametros = (parametros) => {
 };
 
 // Carga una vista HTML externa dentro de un elemento
-const cargarVista = async (path, elemento) => {
+const cargarVista = async (ruta, elemento) => {
   try {
-    const response = await fetch(`./src/Views/${path}`);
+    const response = await fetch(`./src/views/${ruta.path}`);
     if (!response.ok) throw new Error("Vista no encontrada");
 
     const contenido = await response.text();
-    elemento.innerHTML = contenido;
+
+    elemento.innerHTML = "";
+    if (ruta.private) {
+
+      const header = await fetch(`./src/components/header.html`);
+      const contenidoHeader = await header.text();
+      elemento.innerHTML += contenidoHeader;
+
+
+      const asideGestion = await fetch(`./src/components/asideGestion.html`);
+      const contenidoAsideGestion = await asideGestion.text();
+      elemento.innerHTML += contenidoAsideGestion;
+      elemento.innerHTML += contenido;
+    } else {
+      elemento.innerHTML = contenido;
+    }
+
+
   } catch (error) {
     console.error(error);
     elemento.innerHTML = `<h2>Error al cargar la vista</h2>`;
