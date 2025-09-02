@@ -1,5 +1,6 @@
 import { loginController } from "../views/auth/login/loginController";
 import { crearUsuarioController } from "../views/usuarios/crear/crearUsuarioController";
+import { editarUsuarioController } from "../views/usuarios/editar/editarUsuarioController";
 import { usuariosController } from "../views/usuarios/listar/usuariosController";
 
 export const routes = {
@@ -24,17 +25,18 @@ export const routes = {
       permit: "usuarios.create"
     },
     editar: {
-      path: `usuarios/actualizar/index.html`,
-      controlador: () => {},
-      // controlador: actualizarUsuariosController,
-      private: true
+      path: `usuarios/editar/index.html`,
+      controlador: editarUsuarioController,
+      private: true,
+      permit: "usuarios.update"
     }
   },
-  // inicio: {
-  //   path: "inicio/index.html",
-  //   controlador: inicioController,
-  //   private: true
-  // },
+  inicio: {
+    path: "inicio/inicio.html",
+    // controlador: inicioController,
+    controlador: () => { },
+    private: true
+  },
   // ingresos: {
   //   path: "ingresos/index.html",
   //   controlador: ingresosController,

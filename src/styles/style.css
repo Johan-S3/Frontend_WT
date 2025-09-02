@@ -2,7 +2,7 @@
 @import url(header.css);
 @import url(aside.css);
 @import url(formularios.css);
-/* @import url(inicio.css); */
+@import url(inicio.css);
 @import url(tables.css);
 
 #app{

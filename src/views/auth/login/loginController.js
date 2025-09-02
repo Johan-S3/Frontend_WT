@@ -97,6 +97,10 @@ export const loginController = async (parametros = null) => {
           window.location.href = '#/usuarios';
           return
         }
+        if (data.id == 2) {
+          window.location.href = '#/inicio';
+          return
+        }
         window.location.href = '#/inicio';
       }
     } catch (error) {

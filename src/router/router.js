@@ -125,11 +125,12 @@ const cargarVista = async (ruta, elemento) => {
     if (!response.ok) throw new Error("Vista no encontrada");
 
     const contenido = await response.text();
-    
+
     const elHeader = document.querySelector("#app-header");
     const elAside = document.querySelector("#app-aside");
+
     if (ruta.private) {
-        // Aseguramos que se vean de nuevo
+      // Aseguramos que se vean de nuevo
       elHeader.classList.remove("layout--auth");
       elAside.classList.remove("layout--auth");
 

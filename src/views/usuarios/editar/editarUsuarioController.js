@@ -1,13 +1,20 @@
-
 /* ------------------ IMPORTACIONES ------------------  */
 // Realizo todas las importaciones correspondientes de las funciones necesarias.
 import { errorAlert, successAlert } from "../../../helpers/alertas.js";
 import { limitar, outFocus, validarCorreo, validarFormulario, validarLetras, validarNumeros } from "../../../helpers/module.js";
-import { crearDato, obtenerDatos } from "../../../helpers/peticiones.js";
+import { crearDato, editarDato, obtenerDatos } from "../../../helpers/peticiones.js";
 
 
-export const crearUsuarioController = async (parametros = null) => {
+export const editarUsuarioController = async (parametros = null) => {
   /* ------------------ VARIABLES ------------------  */
+
+  const { id } = parametros
+
+  // Llamo la funcion que carga los roles
+  cargarRoles();
+
+  // Recibo los datos del usuario del localStorage
+  // const datosUsuario = JSON.parse(localStorage.getItem("usuario"));
 
   // Obtengo la referencia del formulario por el ID
   const formRegistro = document.getElementById("form-Registro");
@@ -18,11 +25,22 @@ export const crearUsuarioController = async (parametros = null) => {
   const correo = formRegistro.querySelector('input[name="correo"]');
   const telefono = formRegistro.querySelector('input[name="telefono"]');
   const selectRol = formRegistro.querySelector('select[name="rol"]');
+  const contrasena = formRegistro.querySelector('input[name="contrasenia"]');
+
+  //   Realizo consulta a los usuarios por el id recibido como parametro.
+  const usuario = await obtenerDatos(`usuarios/${id}`);
+  // Destructuro el usuario para solo obtener su data.
+  const { data } = usuario;
+
+  const user = data[0];
+
+  cedula.value = user.cedula;
+  nombre.value = user.nombre;
+  correo.value = user.correo;
+  telefono.value = user.telefono;
+  selectRol.value = user.id_rol;
 
   /* ------------------ EVENTOS ------------------  */
-  // Agrego evento para cargar los roles en el select
-  document.addEventListener("DOMContentLoaded", cargarRoles());
-
   // Agrego eventos para permitir solo la entradas de numeros, letras y caracteres a los campos correspondientemente.
   cedula.addEventListener('keydown', validarNumeros);
   nombre.addEventListener('keydown', validarLetras);
@@ -80,15 +98,13 @@ export const crearUsuarioController = async (parametros = null) => {
     // Try..catch para poder ver el error.
     try {
       // En una variable almaceno la respuesta de hacer fetch a la ruta que me consulta.
-      const respuesta = await crearDato("usuarios", usuario);
-      console.log(respuesta);
-
+      const respuesta = await editarDato("usuarios", id, usuario);
 
       // Si la petición NO se realizó con exito...
       if (!respuesta.success) {
         let error = null; //Declaro variable error e inicializo en null para luego almacenar el error.
-        if (Array.isArray(respuesta.erros) && respuesta.erros.length) error = respuesta.erros[0].message; //Si lo errores obtenidos de la peticion es un arreglo entonces almaceno en la variable error el primer error del arreglo.
-        else error = respuesta.erros //Si no es un arreglo solo alamceno el error obtenido en la varaible.
+        if (Array.isArray(respuesta.errors)) error = respuesta.errors[0]; //Si lo errores obtenidos de la peticion es un arreglo entonces almaceno en la variable error el primer error del arreglo.
+        else error = respuesta.errors //Si no es un arreglo solo alamceno el error obtenido en la varaible.
         // Por ultimo muestro el error en una alerta y retorno para no seguir.
         await errorAlert(respuesta.message, error);
         return;
@@ -107,7 +123,6 @@ export const crearUsuarioController = async (parametros = null) => {
       console.error(error);
     }
   })
-
 
   /* ------------------ FUNCIONES ------------------  */
 
