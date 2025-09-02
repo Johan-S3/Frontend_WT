@@ -1,0 +1,53 @@
+@import url(variables.css);
+
+/* Estilos del header de la página */
+.header {
+    width: calc(100vw);
+    display: flex;
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--colorPrincipal);
+    height: var(--headerSize);
+    color: var(--colorBlanco);
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.header__link {
+    display: inline-block;
+}
+
+.header__logo {
+    max-height: calc(var(--headerSize) - 15px);
+    width: auto;
+}
+
+
+/* Estilos para el apartado de informacion del usuarios y el acceso a paginas mediante los iconos */
+.header__info {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    font-size: var(--fontIconHeader);
+    text-align: right;
+}
+
+
+/* Estilo para el icono de usuario */
+.header__icon {
+    font-size: 3.5rem;
+    padding-right: 10px;
+    border-right: 2px solid var(--colorTerciario);
+}
+
+/* Estilo para el enlace de cerrar Sesion */
+.header__salir {
+    text-decoration: none;
+    font-weight: 400;
+    color: var(--colorTerciario);
+    font-size: 18px;
+}

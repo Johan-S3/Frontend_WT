@@ -1,0 +1,33 @@
+<main class="main-content">
+    <h1 class="content__title content__title--center">Ingrese los datos del usuario</h1>
+
+    <form class="form form--large" id="form-Registro" action="" novalidate>
+        <div class="form__space">
+            <label class="form__label" for="cedula">Cedula:</label>
+            <input class="form__input" type="text" name="cedula" placeholder="22222222" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="nombre:">Nombre:</label>
+            <input class="form__input" type="text" name="nombre" placeholder="ej: Juan Perez" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="correo">Correo electronico:</label>
+            <input class="form__input" type="email" name="correo" placeholder="example@example.com" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="telefono">Telefono:</label>
+            <input class="form__input" type="text" name="telefono" placeholder="123 456 7890" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="rol">Rol de usuario:</label>
+            <select class="form__select" name="rol" id="" autocomplete="off" required>
+                <option>Seleccione un rol</option>
+            </select>
+        </div>
+
+        <div class="form__space form__space--button">
+            <button class="form__button" type="submit">Registrar</button>
+        </div>
+
+    </form>
+</main>

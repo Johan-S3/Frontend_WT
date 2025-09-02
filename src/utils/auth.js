@@ -12,6 +12,8 @@ export const isAuth = async () => {
       const refresh = await refreshToken();
       if (!refresh) return false;
 
+      alert("Token renovado");
+
       response = await obtenerDatos("auth/protected");
       return response.success;
     }
@@ -26,6 +28,8 @@ export const isAuth = async () => {
       return false;
     }
 
+    console.log(response);
+    
     console.warn("Error de autenticación no manejado:", response);
     return false;
   } catch (error) {

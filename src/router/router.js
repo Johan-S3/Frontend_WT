@@ -1,4 +1,6 @@
 
+import { asideController } from "../components/aside/asideController";
+import { headerController } from "../components/header/headerController";
 import { errorAlert } from "../helpers/alertas";
 import getCookie from "../helpers/getCookie";
 import { isAuth } from "../utils/auth";
@@ -123,24 +125,33 @@ const cargarVista = async (ruta, elemento) => {
     if (!response.ok) throw new Error("Vista no encontrada");
 
     const contenido = await response.text();
-
-    elemento.innerHTML = "";
+    
+    const elHeader = document.querySelector("#app-header");
+    const elAside = document.querySelector("#app-aside");
     if (ruta.private) {
+        // Aseguramos que se vean de nuevo
+      elHeader.classList.remove("layout--auth");
+      elAside.classList.remove("layout--auth");
 
-      const header = await fetch(`./src/components/header.html`);
-      const contenidoHeader = await header.text();
-      elemento.innerHTML += contenidoHeader;
+      // Header
+      const headerRes = await fetch("./src/components/header/header.html");
+      elHeader.innerHTML = await headerRes.text();
 
+      // Aside
+      const asideRes = await fetch("./src/components/aside/aside.html");
+      elAside.innerHTML = await asideRes.text();
 
-      const asideGestion = await fetch(`./src/components/asideGestion.html`);
-      const contenidoAsideGestion = await asideGestion.text();
-      elemento.innerHTML += contenidoAsideGestion;
-      elemento.innerHTML += contenido;
+      // Main
+      elemento.innerHTML = contenido
+
+      await asideController();
+      await headerController();
     } else {
+      elHeader.classList.add("layout--auth");
+      elAside.classList.add("layout--auth");
+
       elemento.innerHTML = contenido;
     }
-
-
   } catch (error) {
     console.error(error);
     elemento.innerHTML = `<h2>Error al cargar la vista</h2>`;

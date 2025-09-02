@@ -1,20 +1,61 @@
 @import url(variables.css);
+@import url(header.css);
+@import url(aside.css);
 @import url(formularios.css);
-@import url(inicio.css);
+/* @import url(inicio.css); */
 @import url(tables.css);
 
-body{
+#app{
   height: 100vh;
   max-width: 100vw;
   background-color: var(--colorPrincipal);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
+
+/* Cuando es login (sin header ni aside) */
+.layout--auth{
+  display: none;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+#app-header {
+  height: var(--headerSize);
+}
+
+.layout__body {
+  display: flex;
+  flex: 1;
+}
+
+#app-aside {
+  width: 220px;
+  height: 100%;
+}
+
+#app-main {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--colorSecundario);
+}
+
+/* Cuando es login (sin header ni aside) */
+.layout--auth #app-header,
+.layout--auth #app-aside {
+  display: none;
+}
+
+.layout--auth .layout__body {
+  display: block;
+}
+
 
 .inicio{
   display: flex;
   height: 100%;
+  background-color: var(--colorPrincipal);
 }
 
 .contenido{
@@ -60,7 +101,6 @@ body{
   background-color: var(--colorSecundario);
   border-radius: var(--borderRadiusForms) 0 0 var(--borderRadiusForms);
   filter: drop-shadow(0px 0 7px var(--colorSombras));
-
 }
 
 .formLogin{

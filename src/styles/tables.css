@@ -1,39 +1,43 @@
 @import url(variables.css);
-.image{
-  display: block;
-  position: absolute;
-  width: 4rem;
-  bottom: calc(100% - 5rem);
-  right: calc(100% - 5rem);
-}
-.contenedor_tabla{
-  width: 100%;
-  height: 100%;
+
+.main-content{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 50px 0;
-  overflow-y: auto;
-  gap: 5%;
-}
-.contenedor_tabla--spaceOut{
-  padding: 0;
-}
-
-.table, .table__header{
   width: 100%;
-  max-width: 60%;
+  padding: 10px 30px;
+  height: 100%;
+  gap: 20px;
+  background-color: var(--colorAdicional);
 }
 
-.table__header{
-  display: flex;
-  justify-content: space-between;
-}
-
-.table__title{
+.content__title{
   font-size: 2.5rem;
-  color: var(--colorTerciario);
+  color: var(--colorPrincipal);
+  border-bottom: 1px solid var(--colorTerciario);
+}
+
+.content__title--center{
+  text-align: center;
+}
+
+.content__button{
+  height: min-content;
+  width: min-content;
+  text-wrap: nowrap;
+  padding: 5px 15px;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: var(--colorTerciario);
+  color: var(--colorPrincipal);
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: var(--timeTransition);
+  background-color: var(--colorBlanco);
+  color: var(--colorPrincipal);
+}
+.content__button:hover{
+  box-shadow: 0px 0px 8px var(--colorSombras);
 }
 
 .table{
@@ -83,6 +87,7 @@
 .table__button{
   height: 35px;
   width: 35px;
+  display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
@@ -93,25 +98,26 @@
   cursor: pointer;
   transition: var(--timeTransition);
 }
+
 .table__button--delete{
   background-color: var(--colorPrincipal);
   color: var(--colorBlanco);
 }
 
-.table__button--create{
-  width: auto;
-  height: auto;
-  padding: 0 20px;
-  border-radius: var(--borderRadiusInputs);
-  font-weight: 500;
-  background-color: var(--colorBlanco);
-  color: var(--colorTerciario);
-}
-
 .table__button:hover{
-  filter: drop-shadow(0px 0px 3px var(--colorSombras));
+  box-shadow: 0px 0px 5px var(--colorSombras);
 }
 
+
+.content__info{
+  text-align: center;
+  color: var(--colorAdicional);
+  font-size: 40px;
+  filter: drop-shadow(0px 0px 0.5px var(--colorSecundario));
+}
+.content__info--invisible{
+  display: none;
+}
 @media (max-width: 930px) {
   .table{
     max-width: 70%;
