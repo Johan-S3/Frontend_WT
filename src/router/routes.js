@@ -1,5 +1,8 @@
 import { loginController } from "../views/auth/login/loginController";
 import { perfilController } from "../views/perfil/perfilController";
+import { crearServicioVehiculoController } from "../views/serviciosVehiculos/crear/crearServicioVehiculoController";
+import { editarServicioVehiculoController } from "../views/serviciosVehiculos/editar/editarServicioVehiculoController";
+import { serviciosVehiculosController } from "../views/serviciosVehiculos/listar/servicioVehiculoController";
 import { crearTipoVehiculoController } from "../views/tiposVehiculos/crear/crearTipoVehiculoController";
 import { editarTipoVehiculoController } from "../views/tiposVehiculos/editar/editarTipoVehiculo";
 import { tiposVehiculosController } from "../views/tiposVehiculos/listar/tiposVehiculosController";
@@ -49,14 +52,12 @@ export const routes = {
   tiposVehiculos: {
     "/": {
       path: `tiposVehiculos/listar/index.html`,
-      // controlador: () => {},
-        controlador: tiposVehiculosController,
+      controlador: tiposVehiculosController,
       private: true,
       permit: "tipos_vehiculos.index"
     },
     crear: {
       path: `tiposVehiculos/crear/index.html`,
-      controlador: () => {},
       controlador: crearTipoVehiculoController,
       private: true,
       permit: "tipos_vehiculos.create"
@@ -68,30 +69,33 @@ export const routes = {
       permit: "tipos_vehiculos.update"
     }
   },
+  serviciosVehiculos: {
+    "/": {
+      path: `serviciosVehiculos/listar/index.html`,
+      controlador: serviciosVehiculosController,
+      private: true,
+      permit: "servicios_vehiculos.index"
+    },
+    crear: {
+      path: `serviciosVehiculos/crear/index.html`,
+      controlador: crearServicioVehiculoController,
+      // controlador: () => {},
+      private: true,
+      permit: "servicios_vehiculos.create"
+    },
+    editar: {
+      path: `serviciosVehiculos/editar/index.html`,
+      controlador: editarServicioVehiculoController,
+      private: true,
+      permit: "servicios_vehiculos.update"
+    }
+  },
   // ingresos: {
   //   path: "ingresos/index.html",
   //   controlador: ingresosController,
   //   private: true
   // },
   // // Grupo de rutas
-
-  // lavadores: {
-  //   "/": {
-  //     path: `lavadores/listar/index.html`,
-  //     controlador: lavadoresController,
-  //     private: true
-  //   },
-  //   crear: {
-  //     path: `lavadores/crear/index.html`,
-  //     controlador: crearLavadoresController,
-  //     private: true
-  //   },
-  //   editar: {
-  //     path: `lavadores/actualizar/index.html`,
-  //     controlador: actualizarLavadorController,
-  //     private: true
-  //   }
-  // },
   // tipolavados: {
   //   "/": {
   //     path: `tipolavados/listar/index.html`,
