@@ -1,0 +1,29 @@
+<main class="main-content">
+    <h1 class="content__title content__title--center">Ingrese los datos</h1>
+
+    <form class="form form--large" id="form-Registro" action="" novalidate>
+        <div class="form__space">
+            <label class="form__label" for="nombre">Nombre del item:</label>
+            <input class="form__input" type="text" name="nombre" placeholder="ej: Grafitado" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="descripcion">Descripción:</label>
+            <input class="form__input" type="text" name="descripcion" placeholder="ej: Se realiza..." autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="valor">Valor:</label>
+            <input class="form__input" type="text" name="valor" placeholder="ej: 5000" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="tipoVehiculo">Tipo de vehiculo:</label>
+            <select class="form__select" name="tipoVehiculo" id="" autocomplete="off" required>
+                <option>Seleccione un tipo de vehiculo</option>
+            </select>
+        </div>
+
+        <div class="form__space form__space--button">
+            <button class="form__button" type="submit">Guardar</button>
+        </div>
+
+    </form>
+</main>

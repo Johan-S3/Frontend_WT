@@ -114,7 +114,7 @@ export const crearUsuarioController = async (parametros = null) => {
   // Funcion para cargar los roles en el la etiqueta option correspondiente
   async function cargarRoles() {
     // Asigno en una variable la respues de la peticion de los roles
-    const rolesExistentes = await obtenerDatos("roles");
+    const rolesExistentes = await obtenerDatos("roles/unicos");
     // console.log(rolesExistentes);
 
     // Recorro los roles obtenido

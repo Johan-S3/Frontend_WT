@@ -167,7 +167,7 @@ export const perfilController = async (parametros = null) => {
 
             const respuesta = await editarUnicoDato("usuarios/contrasena", user.id, camposContrasena);
 
-            console.log(respuesta.erros[0]);
+            // console.log(respuesta.erros[0]);
             
             // Si la petición NO se realizó con exito...
             if (!respuesta.success) {

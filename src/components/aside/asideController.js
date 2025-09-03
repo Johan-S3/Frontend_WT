@@ -58,6 +58,16 @@ export const asideController = () => {
             contenedorItems.append(item);
         }
 
+        if (permiso == "items_tipos_lavados.index") {
+            const [item, icono] = construirItem();
+    
+            item.setAttribute("href", "#/itemsTiposLavados");
+            icono.classList.add("ri-bubble-chart-fill");
+    
+            item.append(icono, "IT Lavados");
+            contenedorItems.append(item);
+        }
+
         if (permiso == "facturas.index") {
             const [item, icono] = construirItem();
     
