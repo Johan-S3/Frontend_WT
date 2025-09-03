@@ -125,7 +125,13 @@ async function cargarItemsTiposLavados(contendor) {
                 }
             });
             // Agrego las celdas a la fila
-            fila.append(celdaTipoLavado, celdaItemLavado, celdaValor, celdaAcciones);
+            if (celdaAcciones.children.length > 0) fila.append(celdaTipoLavado, celdaItemLavado, celdaValor, celdaAcciones);
+            else {
+                const accionesHead = document.querySelector("#acciones");
+                if (accionesHead) accionesHead.remove();
+                fila.append(celdaTipoLavado, celdaItemLavado, celdaValor);
+            }
+            
 
             // Por ultimo agrego la fila al contenedor
             contendor.append(fila);

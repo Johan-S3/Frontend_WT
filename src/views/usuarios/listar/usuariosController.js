@@ -157,7 +157,14 @@ async function cargarUsuarios(contendor) {
         }
       });
       // Agrego las celdas a la fila
-      fila.append(celdaId, celdaCedula, celdaNombre, celdaCorreo, celdaTelefono, celdaRol, celdaEstado, celdaAcciones);
+
+      if(celdaAcciones.children.length > 0) fila.append(celdaId, celdaCedula, celdaNombre, celdaCorreo, celdaTelefono, celdaRol, celdaEstado, celdaAcciones);
+      else{
+        const accionesHead = document.querySelector("#acciones");
+        if(accionesHead) accionesHead.remove();
+        fila.append(celdaId, celdaCedula, celdaNombre, celdaCorreo, celdaTelefono, celdaRol, celdaEstado);
+      } 
+
 
       // Por ultimo agrego la fila al contenedor
       contendor.append(fila);

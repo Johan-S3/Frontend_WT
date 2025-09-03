@@ -123,7 +123,13 @@ async function cargarServiciosVehiculos(contendor) {
         }
       });
       // Agrego las celdas a la fila
-      fila.append(celdaId, celdaNombre, CeldaPorcentaje, celdaAcciones);
+      if (celdaAcciones.children.length > 0) fila.append(celdaId, celdaNombre, CeldaPorcentaje, celdaAcciones);
+      else {
+        const accionesHead = document.querySelector("#acciones");
+        if(accionesHead) accionesHead.remove();
+        fila.append(celdaId, celdaNombre, CeldaPorcentaje);
+      }
+      // fila.append(celdaId, celdaNombre, CeldaPorcentaje, celdaAcciones);
 
       // Por ultimo agrego la fila al contenedor
       contendor.append(fila);

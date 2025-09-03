@@ -127,7 +127,12 @@ async function cargarTiposLavados(contendor) {
                 }
             });
             // Agrego las celdas a la fila
-            fila.append(celdaId, celdaNombre, celdaDescripcion, celdaTipoVeh, celdaAcciones);
+            if (celdaAcciones.children.length > 0) fila.append(celdaId, celdaNombre, celdaDescripcion, celdaTipoVeh, celdaAcciones);
+            else {
+                const accionesHead = document.querySelector("#acciones");
+                if(accionesHead) accionesHead.remove();
+                fila.append(celdaId, celdaNombre, celdaDescripcion, celdaTipoVeh);
+            }
 
             // Por ultimo agrego la fila al contenedor
             contendor.append(fila);

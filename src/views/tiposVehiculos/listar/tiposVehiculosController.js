@@ -29,7 +29,7 @@ async function cargarTiposVehiculos(contendor) {
 
     // Realizo la consulta de los datos que se almacenaran en la tabla
     const tiposVehiculos = await obtenerDatos("tiposVehiculos");
-    
+
     // Si el codigo obtenido de la petición es 404 (Recurso no encontrado). Es decir, no registros en la base de datos muestro mensaje (Nor found).
     if (tiposVehiculos.code == 404) {
       tabla.setAttribute("style", "display: none")
@@ -121,7 +121,13 @@ async function cargarTiposVehiculos(contendor) {
         }
       });
       // Agrego las celdas a la fila
-      fila.append(celdaId, celdaNombre, celdaAcciones);
+      if (celdaAcciones.children.length > 0) fila.append(celdaId, celdaNombre, celdaAcciones);
+      else {
+        const accionesHead = document.querySelector("#acciones");
+        if(accionesHead) accionesHead.remove();
+        fila.append(celdaId, celdaNombre);
+      }
+
 
       // Por ultimo agrego la fila al contenedor
       contendor.append(fila);

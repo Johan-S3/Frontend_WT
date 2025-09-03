@@ -30,8 +30,8 @@ async function cargarItemsLavados(contendor) {
     // Realizo la consulta de los datos que se almacenaran en la tabla
     const itemsLavados = await obtenerDatos("itemsLavados");
     // console.log(itemsLavados);
-    
-    
+
+
     // Si el codigo obtenido de la petición es 404 (Recurso no encontrado). Es decir, no registros en la base de datos muestro mensaje (Nor found).
     if (itemsLavados.code == 404) {
       tabla.setAttribute("style", "display: none")
@@ -129,7 +129,13 @@ async function cargarItemsLavados(contendor) {
         }
       });
       // Agrego las celdas a la fila
-      fila.append(celdaId, celdaNombre, celdaDescripcion, celdaValor, celdaTipoVeh, celdaAcciones);
+      if (celdaAcciones.children.length > 0) fila.append(celdaId, celdaNombre, celdaDescripcion, celdaValor, celdaTipoVeh, celdaAcciones);
+      else {
+        const accionesHead = document.querySelector("#acciones");
+        if (accionesHead) accionesHead.remove();
+        fila.append(celdaId, celdaNombre, celdaDescripcion, celdaValor, celdaTipoVeh);
+      }
+
 
       // Por ultimo agrego la fila al contenedor
       contendor.append(fila);
