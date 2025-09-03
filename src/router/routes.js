@@ -4,6 +4,7 @@ import { editarItemLavadoController } from "../views/itemsLavados/editar/editarI
 import { itemsLavadosController } from "../views/itemsLavados/listar/itemsLavadosController";
 import { crearItemTipoLavadoController } from "../views/itemsTiposLavados/crear/crearItemLavadoController";
 import { itemsTiposLavadosController } from "../views/itemsTiposLavados/listar/itemsTiposLavadosController";
+import { verItemsTiposLavadosController } from "../views/itemsTiposLavados/ver/verItemsTipoLavadoController";
 import { perfilController } from "../views/perfil/perfilController";
 import { crearServicioVehiculoController } from "../views/serviciosVehiculos/crear/crearServicioVehiculoController";
 import { editarServicioVehiculoController } from "../views/serviciosVehiculos/editar/editarServicioVehiculoController";
@@ -22,7 +23,6 @@ export const routes = {
   // Ruta simple
   login: {
     path: "auth/login/index.html",
-    // controlador: loginController,
     controlador: loginController,
     private: false
   },
@@ -48,7 +48,6 @@ export const routes = {
   },
   inicio: {
     path: "inicio/inicio.html",
-    // controlador: inicioController,
     controlador: () => { },
     private: true
   },
@@ -154,35 +153,17 @@ export const routes = {
       private: true,
       permit: "items_tipos_lavados.create"
     },
-    // editar: {
-    //   path: `itemsTiposLavados/editar/index.html`,
-    //   controlador: editarTipoLavadoController,
-    //   private: true,
-    //   permit: "items_tipos_lavados.update"
-    // }
+    ver: {
+      path: `itemsTiposLavados/ver/index.html`,
+      controlador: verItemsTiposLavadosController,
+      private: true,
+      permit: "items_tipos_lavados.index"
+    }
   },
   // ingresos: {
   //   path: "ingresos/index.html",
   //   controlador: ingresosController,
   //   private: true
-  // },
-  // // Grupo de rutas
-  // tipolavados: {
-  //   "/": {
-  //     path: `tipolavados/listar/index.html`,
-  //     controlador: tipoLavadosController,
-  //     private: true
-  //   },
-  //   crear: {
-  //     path: `tipolavados/crear/index.html`,
-  //     controlador: crearTipoLavadoController,
-  //     private: true
-  //   },
-  //   editar: {
-  //     path: `tipolavados/actualizar/index.html`,
-  //     controlador: actualizarTipoLavadoController,
-  //     private: true
-  //   }
   // },
   // vehiculo: {
   //   crear: {

@@ -71,32 +71,32 @@ async function cargarItemsTiposLavados(contendor) {
             // Agrego a las celdas el contenido correspondiente.
             celdaTipoLavado.textContent = itemTipoLavado.nombre_tipo;
             celdaItemLavado.textContent = itemTipoLavado.cantidad_items;
-            celdaValor.textContent = itemTipoLavado.total;
+            celdaValor.textContent = "$ " + itemTipoLavado.total;
 
             const permisos = getCookie("permisos", []);
 
             permisos.forEach(permiso => {
-                if (permiso == "items_tipos_lavados.update") {
+                if (permiso == "items_tipos_lavados.index") {
                     // Creo el boton de editar con sus clases y atributos y sus nodos hijos y los agrego.
-                    const botonEditar = document.createElement("button");
-                    botonEditar.classList.add("table__button");
-                    botonEditar.setAttribute("data-id", itemTipoLavado.id)
-                    const iconoEditar = document.createElement("i");
-                    iconoEditar.classList.add("ri-edit-2-line");
-                    botonEditar.append(iconoEditar);
+                    const botonVer = document.createElement("button");
+                    botonVer.classList.add("table__button");
+                    botonVer.setAttribute("data-id", itemTipoLavado.tipo_lavado_id)
+                    const iconoVer = document.createElement("i");
+                    iconoVer.classList.add("ri-eye-fill");
+                    botonVer.append(iconoVer);
 
                     // Agrego eventos a los botones
-                    botonEditar.addEventListener("click", async () => {
-                        const alerta = await confirmAlert("¿Desea actualizar el tipo de lavado?");
+                    botonVer.addEventListener("click", async () => {
+                        const alerta = await confirmAlert("¿Desea ver el tipo de lavado?");
 
                         // Si es confirmada la aleta entonces se obtiene el id del atributo almacenado en el boton...
                         if (alerta.isConfirmed) {
-                            const idEditar = botonEditar.getAttribute("data-id");
-                            window.location.href = `#/tiposLavados/editar/id=${idEditar}`;
+                            const idVer = botonVer.getAttribute("data-id");
+                            window.location.href = `#/itemsTiposLavados/ver/id=${idVer}`;
                         }
                     })
                     // Agrego los botones a la celda de acciones.
-                    celdaAcciones.append(botonEditar);
+                    celdaAcciones.append(botonVer);
                 }
                 if (permiso == "items_tipos_lavados.delete") {
                     // Creo el boton de eliminar con sus clases y atributos y sus nodos hijos y los agrego.

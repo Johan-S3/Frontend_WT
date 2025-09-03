@@ -68,6 +68,16 @@ export const asideController = () => {
             contenedorItems.append(item);
         }
 
+        if (permiso == "lavados.index") {
+            const [item, icono] = construirItem();
+    
+            item.setAttribute("href", "#/lavados");
+            icono.classList.add("ri-drop-fill");
+    
+            item.append(icono, "Lavados");
+            contenedorItems.append(item);
+        }
+
         if (permiso == "facturas.index") {
             const [item, icono] = construirItem();
     
