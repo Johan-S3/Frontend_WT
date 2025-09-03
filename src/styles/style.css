@@ -39,7 +39,7 @@
 #app-main {
   flex: 1;
   overflow-y: auto;
-  background-color: var(--colorSecundario);
+  background-color: var(--colorAdicional);
 }
 
 /* Cuando es login (sin header ni aside) */

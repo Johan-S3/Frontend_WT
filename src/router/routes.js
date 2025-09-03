@@ -1,5 +1,8 @@
 import { loginController } from "../views/auth/login/loginController";
 import { perfilController } from "../views/perfil/perfilController";
+import { crearTipoVehiculoController } from "../views/tiposVehiculos/crear/crearTipoVehiculoController";
+import { editarTipoVehiculoController } from "../views/tiposVehiculos/editar/editarTipoVehiculo";
+import { tiposVehiculosController } from "../views/tiposVehiculos/listar/tiposVehiculosController";
 import { crearUsuarioController } from "../views/usuarios/crear/crearUsuarioController";
 import { editarUsuarioController } from "../views/usuarios/editar/editarUsuarioController";
 import { usuariosController } from "../views/usuarios/listar/usuariosController";
@@ -42,6 +45,28 @@ export const routes = {
     path: "perfil/index.html",
     controlador: perfilController,
     private: true
+  },
+  tiposVehiculos: {
+    "/": {
+      path: `tiposVehiculos/listar/index.html`,
+      // controlador: () => {},
+        controlador: tiposVehiculosController,
+      private: true,
+      permit: "tipos_vehiculos.index"
+    },
+    crear: {
+      path: `tiposVehiculos/crear/index.html`,
+      controlador: () => {},
+      controlador: crearTipoVehiculoController,
+      private: true,
+      permit: "tipos_vehiculos.create"
+    },
+    editar: {
+      path: `tiposVehiculos/editar/index.html`,
+      controlador: editarTipoVehiculoController,
+      private: true,
+      permit: "tipos_vehiculos.update"
+    }
   },
   // ingresos: {
   //   path: "ingresos/index.html",
