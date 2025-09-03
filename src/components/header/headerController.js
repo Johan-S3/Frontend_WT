@@ -9,4 +9,10 @@ export const headerController = () => {
 
   nombreUser.textContent = usuario.nombre;
   rolUser.textContent = usuario.nombre_rol;
+
+  const perfil = document.querySelector(".header__icon");
+
+  perfil.addEventListener("click", () => {
+    window.location.href = "#/perfil/"
+  })
 }

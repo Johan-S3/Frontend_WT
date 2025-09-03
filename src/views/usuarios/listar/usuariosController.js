@@ -1,7 +1,7 @@
 import { confirmAlert, errorAlert, successAlert } from "../../../helpers/alertas.js";
 import getCookie from "../../../helpers/getCookie.js";
 
-import { eliminarDato, obtenerDatos } from "../../../helpers/peticiones.js";
+import { desactivarDato, eliminarDato, obtenerDatos } from "../../../helpers/peticiones.js";
 
 export const usuariosController = async (parametros = null) => {
   /* ------------------ VARIABLES ------------------  */
@@ -75,6 +75,7 @@ async function cargarUsuarios(contendor) {
       const celdaCorreo = document.createElement("td");
       const celdaTelefono = document.createElement("td");
       const celdaRol = document.createElement("td");
+      const celdaEstado = document.createElement("td");
       const celdaAcciones = document.createElement("td");
 
       // Le agrego una clase a la fila.
@@ -84,7 +85,7 @@ async function cargarUsuarios(contendor) {
       fila.setAttribute("data-id", usuario.id)
 
       // Declaro y asigno a una variable un arreglo con las celdas de la fila
-      const celdas = [celdaId, celdaCedula, celdaNombre, celdaCorreo, celdaTelefono, celdaRol, celdaAcciones];
+      const celdas = [celdaId, celdaCedula, celdaNombre, celdaCorreo, celdaTelefono, celdaRol, celdaEstado, celdaAcciones];
 
       // Recorro el arreglo de las celdas para asignarles la misma clase a todas.
       celdas.forEach(celda => {
@@ -100,6 +101,8 @@ async function cargarUsuarios(contendor) {
       celdaNombre.textContent = usuario.nombre;
       celdaCorreo.textContent = usuario.correo;
       celdaTelefono.textContent = usuario.telefono;
+      if(usuario.activo == 1) celdaEstado.textContent = "Activo";
+      else celdaEstado.textContent = "Inactivo"
       celdaRol.textContent = usuario.nombre_rol;
 
       const permisos = getCookie("permisos", []);
@@ -154,7 +157,7 @@ async function cargarUsuarios(contendor) {
         }
       });
       // Agrego las celdas a la fila
-      fila.append(celdaId, celdaCedula, celdaNombre, celdaCorreo, celdaTelefono, celdaRol, celdaAcciones);
+      fila.append(celdaId, celdaCedula, celdaNombre, celdaCorreo, celdaTelefono, celdaRol, celdaEstado, celdaAcciones);
 
       // Por ultimo agrego la fila al contenedor
       contendor.append(fila);
@@ -184,17 +187,19 @@ async function cargarBoton(contendor) {
   });
 }
 
-// Funcion para borrar de la base de datos el id y para eliminar la tupla en la tabla.
+// Funcion para borrar de la base de datos el id y para (desactivar) la tupla en la tabla.
 async function eliminarusuario(id) {
   // Se realiza la peticion para eliminar el usuario por el id.
-  const peticion = await eliminarDato("usuarios", id);
+  const peticion = await desactivarDato("usuarios/activo", id);
   // Si el codigo de la respuesta el 200. Es decir, el usuario ya se eliminó de la base de datos...
   if (peticion.code == 200) {
+
     // Obtengo la fila con el id del registro que se eliminó y la remuevo de la tabla.
-    const fila = document.querySelector(`[data-id = "${id}"]`)
-    fila.remove();
+    // const fila = document.querySelector(`[data-id = "${id}"]`)
+    // fila.remove();
     // Por ultimo muestro una alerta de exito indicando que el usuario se eliminó.
-    successAlert("usuario eliminado correctamente");
+    await successAlert("Usuario desactivado correctamente");
+    location.reload();
   } else {
     errorAlert(`¡Ups! ${peticion.message}`, peticion.errors);
   }

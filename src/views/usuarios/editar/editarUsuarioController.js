@@ -25,7 +25,7 @@ export const editarUsuarioController = async (parametros = null) => {
   const correo = formRegistro.querySelector('input[name="correo"]');
   const telefono = formRegistro.querySelector('input[name="telefono"]');
   const selectRol = formRegistro.querySelector('select[name="rol"]');
-  const contrasena = formRegistro.querySelector('input[name="contrasenia"]');
+  const selectEstado = formRegistro.querySelector('select[name="estado"]');
 
   //   Realizo consulta a los usuarios por el id recibido como parametro.
   const usuario = await obtenerDatos(`usuarios/${id}`);
@@ -34,11 +34,15 @@ export const editarUsuarioController = async (parametros = null) => {
 
   const user = data[0];
 
+  console.log(user);
+  
+
   cedula.value = user.cedula;
   nombre.value = user.nombre;
   correo.value = user.correo;
   telefono.value = user.telefono;
   selectRol.value = user.id_rol;
+  selectEstado.value = user.activo; 
 
   /* ------------------ EVENTOS ------------------  */
   // Agrego eventos para permitir solo la entradas de numeros, letras y caracteres a los campos correspondientemente.
@@ -53,7 +57,7 @@ export const editarUsuarioController = async (parametros = null) => {
   correo.addEventListener("keypress", (e) => limitar(e, 50));
 
   // Declaro y defino un arreglo con los campos del formulario.
-  const campos = [cedula, nombre, correo, telefono, selectRol];
+  const campos = [cedula, nombre, correo, telefono, selectRol, selectEstado];
 
   // Recorro el arreglo para agregar evento a cada campo: al momento de perder el enfoque se ejecuta el metodo outFocus.
   campos.forEach(campo => {
@@ -92,7 +96,8 @@ export const editarUsuarioController = async (parametros = null) => {
       nombre: nombre.value,
       correo: correo.value,
       telefono: telefono.value,
-      id_rol: selectRol.value
+      id_rol: selectRol.value,
+      activo: selectEstado.value
     }
 
     // Try..catch para poder ver el error.
@@ -103,7 +108,7 @@ export const editarUsuarioController = async (parametros = null) => {
       // Si la petición NO se realizó con exito...
       if (!respuesta.success) {
         let error = null; //Declaro variable error e inicializo en null para luego almacenar el error.
-        if (Array.isArray(respuesta.errors)) error = respuesta.errors[0]; //Si lo errores obtenidos de la peticion es un arreglo entonces almaceno en la variable error el primer error del arreglo.
+        if (Array.isArray(respuesta.erros) && respuesta.erros.length != 0) error = respuesta.erros[0].message; //Si lo errores obtenidos de la peticion es un arreglo entonces almaceno en la variable error el primer error del arreglo.
         else error = respuesta.errors //Si no es un arreglo solo alamceno el error obtenido en la varaible.
         // Por ultimo muestro el error en una alerta y retorno para no seguir.
         await errorAlert(respuesta.message, error);

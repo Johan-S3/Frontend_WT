@@ -1,4 +1,5 @@
 import { loginController } from "../views/auth/login/loginController";
+import { perfilController } from "../views/perfil/perfilController";
 import { crearUsuarioController } from "../views/usuarios/crear/crearUsuarioController";
 import { editarUsuarioController } from "../views/usuarios/editar/editarUsuarioController";
 import { usuariosController } from "../views/usuarios/listar/usuariosController";
@@ -35,6 +36,11 @@ export const routes = {
     path: "inicio/inicio.html",
     // controlador: inicioController,
     controlador: () => { },
+    private: true
+  },
+  perfil: {
+    path: "perfil/index.html",
+    controlador: perfilController,
     private: true
   },
   // ingresos: {

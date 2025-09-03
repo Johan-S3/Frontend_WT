@@ -128,3 +128,9 @@ export const validarCorreo = (correo) => {
   const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regexCorreo.test(correo.trim());
 };
+
+// VALIDACIÓN DE FORMATO DE CONSTRASEÑA
+export const validarContrasena = (contrasena) => {
+  const regexCocontrasena = /^(?=.*[A-Za-z])(?=.*\d).{8,20}$/;
+  return regexCocontrasena.test(contrasena);
+};

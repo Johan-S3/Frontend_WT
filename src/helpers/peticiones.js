@@ -46,6 +46,33 @@ export async function editarDato(endpoint, id, datos) {
   }
 }
 
+// EDITAR UN REGISTRO EXISTENTE
+export async function editarUnicoDato(endpoint, id, datos) {
+  try {
+    const respuesta = await fetch(`${url}/${endpoint}/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(datos),
+    });
+    return await respuesta.json();
+  } catch (error) {
+    console.error("Error al editar dato:", error);
+  }
+}
+
+// Desactivar UN REGISTRO DEL SERVIDOR
+export async function desactivarDato(endpoint, id) {
+  try {
+    const response = await fetch(`${url}/${endpoint}/${id}`, {
+      method: "PATCH",
+      credentials: "include"
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Error al desactivar dato:", error);
+  }
+}
 // ELIMINAR UN REGISTRO DEL SERVIDOR
 export async function eliminarDato(endpoint, id) {
   try {

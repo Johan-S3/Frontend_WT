@@ -1,0 +1,42 @@
+<main class="main-content">
+    <h1 class="content__title content__title--center">Perfil del usuario</h1>
+
+    <form class="form form--completed" id="form-datos" action="" novalidate>
+        <div class="form__space">
+            <label class="form__label" for="cedula">Cedula:</label>
+            <input class="form__input" type="text" name="cedula" placeholder="22222222" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="nombre:">Nombre:</label>
+            <input class="form__input" type="text" name="nombre" placeholder="ej: Juan Perez" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="correo">Correo electronico:</label>
+            <input class="form__input" type="email" name="correo" placeholder="example@example.com" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="telefono">Telefono:</label>
+            <input class="form__input" type="text" name="telefono" placeholder="123 456 7890" autocomplete="off" required>
+        </div>
+
+        <div class="form__space form__space--button form__space--left">
+            <button class="form__button form__button--left" type="submit">Guardar</button>
+        </div>
+
+    </form>
+    <form class="form form--completed" id="form-contrasena" action="" novalidate>
+        <div class="form__space">
+            <label class="form__label" for="contrasenaActual">Contraseña actual:</label>
+            <input class="form__input" type="text" name="contrasenaActual" placeholder="Contraseña actual" autocomplete="off" required>
+        </div>
+        <div class="form__space">
+            <label class="form__label" for="contrasenaNueva">Nueva contraseña:</label>
+            <input class="form__input" type="text" name="contrasenaNueva" placeholder="Nueva contraseña" autocomplete="off" required>
+        </div>
+    
+        <div class="form__space form__space--button form__space--left">
+            <button class="form__button form__button--left" type="submit">Cambiar</button>
+        </div>
+    
+    </form>
+</main>

@@ -94,7 +94,7 @@ export const loginController = async (parametros = null) => {
         // Reseteo los campos del formulario y se dirige a la vista de login
         formLogin.reset();
         if (data.id == 1) {
-          window.location.href = '#/usuarios';
+          window.location.href = '#/inicio';
           return
         }
         if (data.id == 2) {
