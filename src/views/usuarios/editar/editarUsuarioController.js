@@ -10,15 +10,13 @@ export const editarUsuarioController = async (parametros = null) => {
 
   const { id } = parametros
 
-  // Llamo la funcion que carga los roles
-  cargarRoles();
-
+  
   // Recibo los datos del usuario del localStorage
   // const datosUsuario = JSON.parse(localStorage.getItem("usuario"));
-
+  
   // Obtengo la referencia del formulario por el ID
   const formRegistro = document.getElementById("form-Registro");
-
+  
   // Obtengo la referencia de las entradas de texto y de seleccion del formulario por su name
   const cedula = formRegistro.querySelector('input[name="cedula"]');
   const nombre = formRegistro.querySelector('input[name="nombre"]');
@@ -26,6 +24,10 @@ export const editarUsuarioController = async (parametros = null) => {
   const telefono = formRegistro.querySelector('input[name="telefono"]');
   const selectRol = formRegistro.querySelector('select[name="rol"]');
   const selectEstado = formRegistro.querySelector('select[name="estado"]');
+
+  // Llamo la funcion que carga los roles y los estados
+  await cargarRoles();
+  await cargarEstados();
 
   //   Realizo consulta a los usuarios por el id recibido como parametro.
   const usuario = await obtenerDatos(`usuarios/${id}`);
@@ -42,7 +44,7 @@ export const editarUsuarioController = async (parametros = null) => {
   correo.value = user.correo;
   telefono.value = user.telefono;
   selectRol.value = user.id_rol;
-  selectEstado.value = user.activo; 
+  selectEstado.value = user.id_estado; 
 
   /* ------------------ EVENTOS ------------------  */
   // Agrego eventos para permitir solo la entradas de numeros, letras y caracteres a los campos correspondientemente.
@@ -97,7 +99,7 @@ export const editarUsuarioController = async (parametros = null) => {
       correo: correo.value,
       telefono: telefono.value,
       id_rol: selectRol.value,
-      activo: selectEstado.value
+      id_estado: selectEstado.value
     }
 
     // Try..catch para poder ver el error.
@@ -146,6 +148,24 @@ export const editarUsuarioController = async (parametros = null) => {
 
       // Por ultimo agrego el rol al option correspondiente. 
       selectRol.append(option);
+    });
+  }
+
+  // Funcion para cargar los estados en el la etiqueta option correspondiente
+  async function cargarEstados() {
+    // Asigno en una variable la respues de la peticion de los estados
+    const estadosExistentes = await obtenerDatos("estadosUsuarios");
+    // console.log(estadosExistentes);
+
+    // Recorro los estados obtenidos
+    estadosExistentes.data.forEach(estado => {
+      // Creo un nuevo elemento option le doy el value que es el id del estado y le agrego contenido que es el nombre del estado
+      const option = document.createElement('option');
+      option.setAttribute("value", estado.id);
+      option.textContent = estado.nombre_estado;
+
+      // Por ultimo agrego el rol al option correspondiente. 
+      selectEstado.append(option);
     });
   }
 }

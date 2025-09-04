@@ -5,6 +5,7 @@ import { itemsLavadosController } from "../views/itemsLavados/listar/itemsLavado
 import { crearItemTipoLavadoController } from "../views/itemsTiposLavados/crear/crearItemLavadoController";
 import { itemsTiposLavadosController } from "../views/itemsTiposLavados/listar/itemsTiposLavadosController";
 import { verItemsTiposLavadosController } from "../views/itemsTiposLavados/ver/verItemsTipoLavadoController";
+import { lavadoresController } from "../views/lavadores/listar/lavadoresController";
 import { perfilController } from "../views/perfil/perfilController";
 import { crearServicioVehiculoController } from "../views/serviciosVehiculos/crear/crearServicioVehiculoController";
 import { editarServicioVehiculoController } from "../views/serviciosVehiculos/editar/editarServicioVehiculoController";
@@ -159,6 +160,14 @@ export const routes = {
       private: true,
       permit: "items_tipos_lavados.index"
     }
+  },
+  lavadores: {
+    "/": {
+      path: `lavadores/listar/index.html`,
+      controlador: lavadoresController,
+      private: true,
+      permit: "lavadores.index"
+    },
   },
   // ingresos: {
   //   path: "ingresos/index.html",

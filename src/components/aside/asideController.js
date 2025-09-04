@@ -67,6 +67,15 @@ export const asideController = () => {
             item.append(icono, "IT Lavados");
             contenedorItems.append(item);
         }
+        if (permiso == "lavadores.index") {
+            const [item, icono] = construirItem();
+    
+            item.setAttribute("href", "#/lavadores");
+            icono.classList.add("ri-team-fill");
+    
+            item.append(icono, "Lavadores");
+            contenedorItems.append(item);
+        }
 
         if (permiso == "lavados.index") {
             const [item, icono] = construirItem();

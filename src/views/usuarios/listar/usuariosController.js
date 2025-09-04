@@ -51,7 +51,7 @@ async function cargarUsuarios(contendor) {
     }
 
 
-    // console.log(usuarios); return
+    // console.log(usuarios); 
 
     const info = document.querySelector(".content__info");
     const tabla = document.querySelector(".table");
@@ -101,8 +101,7 @@ async function cargarUsuarios(contendor) {
       celdaNombre.textContent = usuario.nombre;
       celdaCorreo.textContent = usuario.correo;
       celdaTelefono.textContent = usuario.telefono;
-      if(usuario.activo == 1) celdaEstado.textContent = "Activo";
-      else celdaEstado.textContent = "Inactivo"
+      celdaEstado.textContent = usuario.nombre_estado;
       celdaRol.textContent = usuario.nombre_rol;
 
       const permisos = getCookie("permisos", []);
