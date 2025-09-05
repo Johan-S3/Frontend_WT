@@ -1,4 +1,6 @@
 import { loginController } from "../views/auth/login/loginController";
+import { facturasController } from "../views/facturas/listar/facturasController";
+import { verFacturaController } from "../views/facturas/ver/verFacturasController";
 import { crearItemLavadoController } from "../views/itemsLavados/crear/crearItemLavadoController";
 import { editarItemLavadoController } from "../views/itemsLavados/editar/editarItemLavadoController";
 import { itemsLavadosController } from "../views/itemsLavados/listar/itemsLavadosController";
@@ -6,6 +8,10 @@ import { crearItemTipoLavadoController } from "../views/itemsTiposLavados/crear/
 import { itemsTiposLavadosController } from "../views/itemsTiposLavados/listar/itemsTiposLavadosController";
 import { verItemsTiposLavadosController } from "../views/itemsTiposLavados/ver/verItemsTipoLavadoController";
 import { lavadoresController } from "../views/lavadores/listar/lavadoresController";
+import { asignarLavadoController } from "../views/lavados/asignar/asignarLavadoController";
+import { crearLavadoController } from "../views/lavados/crear/crearLavadoController";
+import { lavadosController } from "../views/lavados/listar/lavadosController";
+import { pagarLavadoController } from "../views/lavados/pagar/pagarLavadoController";
 import { perfilController } from "../views/perfil/perfilController";
 import { crearServicioVehiculoController } from "../views/serviciosVehiculos/crear/crearServicioVehiculoController";
 import { editarServicioVehiculoController } from "../views/serviciosVehiculos/editar/editarServicioVehiculoController";
@@ -169,45 +175,45 @@ export const routes = {
       permit: "lavadores.index"
     },
   },
-  // ingresos: {
-  //   path: "ingresos/index.html",
-  //   controlador: ingresosController,
-  //   private: true
-  // },
-  // vehiculo: {
-  //   crear: {
-  //     path: `vehiculo/crear/index.html`,
-  //     controlador: crearVehiculoController,
-  //     private: true
-  //   },
-  //   registrar: {
-  //     path: `vehiculo/actualizar/index.html`,
-  //     controlador: registrarVehiculoExistenteController,
-  //     private: true
-  //   },
-  //   editar: {
-  //     path: `vehiculo/actualizar/index.html`,
-  //     controlador: actualizarVehiculoController,
-  //     private: true
-  //   }
-  // },
-  // lavados: {
-  //   crear: {
-  //     path: `lavados/crear/index.html`,
-  //     controlador: crearLavadoController,
-  //     private: true
-  //   },
-  //   editar: {
-  //     path: `lavados/actualizar/index.html`,
-  //     controlador: actualizarLavadoController,
-  //     private: true
-  //   }
-  // },
-  // pago: {
-  //   crear: {
-  //     path: "pago/index.html",
-  //     controlador: pagoController,
-  //     private: true
-  //   }
-  // }
+  lavados: {
+    "/": {
+      path: `lavados/listar/index.html`,
+      controlador: lavadosController,
+      private: true,
+      permit: "lavados.index"
+    },
+    crear: {
+      path: `lavados/crear/index.html`,
+      controlador: crearLavadoController,
+      // controlador: () => {},
+      private: true,
+      permit: "lavados.create"
+    },
+    asignar: {
+      path: `lavados/asignar/index.html`,
+      controlador: asignarLavadoController,
+      private: true,
+      permit: "lavados.update"
+    },
+    pagar: {
+      path: `lavados/pagar/index.html`,
+      controlador: pagarLavadoController,
+      private: true,
+      permit: "lavados.update"
+    }
+  },
+  facturas: { 
+    "/": {
+      path: `facturas/listar/index.html`,
+      controlador: facturasController,
+      private: true,
+      permit: "facturas.index"
+    },
+    ver: {
+      path: `facturas/ver/index.html`,
+      controlador: verFacturaController,
+      private: true,
+      permit: "detalle_factura.index"
+    }
+  }
 }

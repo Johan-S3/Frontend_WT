@@ -1,7 +1,4 @@
-import { confirmAlert, errorAlert, successAlert } from "../../../helpers/alertas.js";
-import getCookie from "../../../helpers/getCookie.js";
-
-import { eliminarDato, obtenerDatos } from "../../../helpers/peticiones.js";
+import {  obtenerDatos } from "../../../helpers/peticiones.js";
 
 export const verItemsTiposLavadosController = async (parametros = null) => {
     /* ------------------ VARIABLES ------------------  */

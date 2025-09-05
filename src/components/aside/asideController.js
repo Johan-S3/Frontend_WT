@@ -91,9 +91,9 @@ export const asideController = () => {
             const [item, icono] = construirItem();
     
             item.setAttribute("href", "#/facturas");
-            icono.classList.add("ri-bill-fill");
+            icono.classList.add("ri-money-dollar-circle-fill");
     
-            item.append(icono, "Historial");
+            item.append(icono, "Ingresos");
             contenedorItems.append(item);
         }
     });

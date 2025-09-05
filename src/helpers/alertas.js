@@ -36,6 +36,17 @@ export const infoAlert = (titulo, texto) => {
   });
 }
 
+export const infoAlertHTML = (titulo, texto) => {
+  return Swal.fire({
+    title: titulo,
+    html: texto,
+    icon: "info",
+    confirmButtonText: "Cerrar",
+    backdrop: false,             // Desactiva el fondo oscuro
+    allowOutsideClick: false     // No se cierra al hacer clic fuera
+  });
+}
+
 export const confirmAlert = async (titulo, texto) => {
   return Swal.fire({
     title: titulo,

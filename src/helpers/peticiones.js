@@ -61,7 +61,7 @@ export async function editarUnicoDato(endpoint, id, datos) {
   }
 }
 
-// Desactivar UN REGISTRO DEL SERVIDOR
+// Desactivar o activar UN REGISTRO DEL SERVIDOR
 export async function desactivarDato(endpoint, id) {
   try {
     const response = await fetch(`${url}/${endpoint}/${id}`, {
@@ -70,7 +70,7 @@ export async function desactivarDato(endpoint, id) {
     });
     return await response.json();
   } catch (error) {
-    console.error("Error al desactivar dato:", error);
+    console.error("Error al cambiar el estado de dato:", error);
   }
 }
 // ELIMINAR UN REGISTRO DEL SERVIDOR
