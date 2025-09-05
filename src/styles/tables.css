@@ -8,6 +8,12 @@
   height: 100%;
   gap: 20px;
   background-color: var(--colorAdicional);
+  overflow: auto;
+}
+
+.main-content::-webkit-scrollbar{
+  height: 0;
+  width: 0;
 }
 
 .content__head{
@@ -128,6 +134,6 @@
 }
 @media (max-width: 930px) {
   .table{
-    max-width: 70%;
+    min-width: 850px;
   }
 }

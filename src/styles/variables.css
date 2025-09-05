@@ -57,7 +57,7 @@
 
 @media (max-width: 930px) {
   :root{
-    --headerSize: 60px;
+    --headerSize: 80px;
     --iconHeaderSize: 40px;
     --fontIconHeader: 1.5rem;
     --sectionSize: 400px;

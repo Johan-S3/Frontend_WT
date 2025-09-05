@@ -45,3 +45,17 @@
   font-size: 25px;
   color: var(--colorTerciario);
 }
+
+/* Media Queries */
+@media (max-width: 1440px) {
+}
+
+@media (max-width: 930px) {
+  .aside{
+    display: none;
+  }
+  
+  #app-aside{
+    display: none;
+  }
+}

@@ -28,17 +28,18 @@
 .layout__body {
   display: flex;
   flex: 1;
-  overflow: hidden;
 }
 
 #app-aside {
   width: 220px;
   height: 100%;
+  transition: 1s ease-in-out;
 }
 
 #app-main {
   flex: 1;
   overflow-y: auto;
+  overflow-x: auto;
   background-color: var(--colorAdicional);
 }
 
@@ -69,7 +70,7 @@
 }
 .contenido__logo{
   width: 300px;
-  height: 300px;
+  height: auto;
   filter: drop-shadow(0px 10px 5px var(--colorSombras));
 }
 .contenido__inf{
@@ -200,19 +201,40 @@
 
 /* Media Queries */
 @media (max-width: 1440px) {
+  .contenido{
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
   .contenido__title{
     font-size: 5.5rem;
   }
   .contenido__text{
     font-size: 1.4rem;
   }
+
+  #app-main::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+  }
 }
 
 @media (max-width: 930px) {
+
+  #app-main::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+  }
+
+  #app-main{
+    padding-bottom: 20px;
+    overflow: auto;
+  }
   .contenido{
-    flex-direction: column;
+    /* flex-direction: column;
     text-align: center;
-    align-items: center;
+    align-items: center; */
+    display: none;
   }
 
   .contenido__logo{
@@ -224,5 +246,11 @@
   }
   .contenido__text{
     font-size: 1.2rem;
+  }
+
+  .section{
+    width: 100%;
+    border-radius: 0;
+    filter: none;
   }
 }

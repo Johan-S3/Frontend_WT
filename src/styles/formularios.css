@@ -152,14 +152,11 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 930px) {
   .form{
-    width: 70%;
-  }
-  .form--large{
-    width: 80%;
-  }
-  .form--little{
-    width: 60%;
+    width: 99%;
+    padding: 20px 15px 10px 15px;
+    display: flex;
+    flex-direction: column;
   }
 }
